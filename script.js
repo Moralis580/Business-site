@@ -152,8 +152,9 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Your message has been sent successfully!");
         contactForm.reset(); // Clear the form fields
       })
-      .catch(() => {
-        // Handle errors
+      .catch((error) => {
+        // Log the error for debugging
+        console.error("Error submitting the form:", error);
         alert("There was an error sending your message. Please try again.");
       });
   });
