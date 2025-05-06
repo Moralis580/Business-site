@@ -128,3 +128,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const contactForm = document.getElementById("contactForm");
+
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevent default form redirection
+
+    // Collect form data
+    const formData = new FormData(contactForm);
+
+    // Convert form data to URL-encoded string
+    const formEntries = new URLSearchParams(formData);
+
+    // Submit form data to Google Forms
+    fetch(contactForm.action, {
+      method: "POST",
+      body: formEntries,
+      mode: "no-cors", // Prevent CORS issues
+    })
+      .then(() => {
+        // Display success notification
+        alert("Your message has been sent successfully!");
+        contactForm.reset(); // Clear the form fields
+      })
+      .catch(() => {
+        // Handle errors
+        alert("There was an error sending your message. Please try again.");
+      });
+  });
+});
